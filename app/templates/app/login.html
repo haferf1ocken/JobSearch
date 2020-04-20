@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="mt-5 offset-5 mb-5 font-weight-normal">Авторизация</h1>
+    <div class="col-4 offset-4">
+        <form class="form-data" action="/login" method="post">
+            {% csrf_token %}
+            <label for="username">Имя пользователя</label>
+            <input type="text" class="form-control" name="username"
+                   placeholder="Введите имя пользователя" required /><br>
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" name="password"
+                   placeholder="Введите пароль" required /><br>
+            {% if login_error %}
+            <label class="text-danger">{{login_error}}</label><br><br>
+            {% endif %}
+            <input type="submit" name="send" value="Войти" class="btn btn-primary" />
+        </form>
+    </div>
+</body>
+</html>

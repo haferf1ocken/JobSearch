@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Банк стажировок</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 class="mt-3 offset-3 mb-5 font-weight-normal">Стажировки</h1>
+    <div class="col-5 offset-3">
+        <form method="post" enctype="multipart/form-data" action="add_interships">
+            {% csrf_token %}
+            <label for="name" style="font-weight:bold">Наименование стажировки</label>
+            <input type="text" class="form-control" name="intership_name"
+            placeholder="Введите название стажировки" required/><br>
+            <label for="experience" style="font-weight:bold">Требования</label><br>
+            <select name="intership_experience" class="form-control">
+                <option hidden>Укажите требуемый опыт работы</option>
+                <option value="Опыт работы">Опыт работы</option>
+                <option value="Без опыта">Без опыта</option>
+            </select><br>
+             <label for="company" style="font-weight:bold">Компании</label><br>
+            <select name="intership_employer id" class="form-control">
+                <option hidden>Укажите компанию</option>
+                {% for employer in employers %}
+                     <option> {{ employer.name }}</option>
+                        
+                     
+                 {% endfor %}
+
+            </select><br>
+
+            <label for="user" style="font-weight:bold">Пользователи</label><br>
+            <select name="intership_user id" class="form-control">
+                <option hidden>Список пользователей</option>
+                {% for user in users %}
+                     <option> {{ user.fullname }}</option>
+                        
+                     
+                 {% endfor %}
+
+            </select><br>
+            <input type="submit" name="send" value="Добавить" class="btn btn-danger" />
+        </form>
+    </div>
+</body>
+</html>
